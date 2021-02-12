@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mediawiki-pod-rs
+spec:
+  minReadySeconds: 10
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mediawiki-pod
+  template:
+    metadata:
+      labels:
+        app: mediawiki-pod
+    spec:
+      containers:
+        - image: mediawiki
+          name: mediawiki-pod
+          ports:
+            - containerPort: 8080
+              protocol: TCP 
